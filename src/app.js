@@ -13,17 +13,17 @@ const client = require("twilio")(accountSid, authToken);
 app.get("", (req, res) => res.send("<p>twilio-api</p>"));
 
 app.get("/send-token", (req, res) => {
-  if (!req.query.phoneNumber) {
+  if (!req.body.phoneNumber) {
     return res.send({ error: "You must provide a phone number" });
   }
-  if (!req.query.channel) {
+  if (!req.body.channel) {
     return res.send({ error: "You must provide a channel" });
   }
 
   client.verify
     .services(serviceSid)
     .verifications.create({
-      to: req.query.phoneNumber,
+      to: req.body.phoneNumber,
       channel: "sms",
     })
     .then((verification) => {
@@ -35,17 +35,17 @@ app.get("/send-token", (req, res) => {
 });
 
 app.get("/check-token", (req, res) => {
-  if (!req.query.phoneNumber) {
+  if (!req.body.phoneNumber) {
     return res.send({ error: "You must provide a phone number" });
   }
-  if (!req.query.code) {
+  if (!req.body.code) {
     return res.send({ error: "You must provide a code" });
   }
   client.verify
     .services(serviceSid)
     .verificationChecks.create({
-      to: req.query.phoneNumber,
-      code: req.query.code,
+      to: req.body.phoneNumber,
+      code: req.body.code,
     })
     .then((verification_check) => res.send({ verification_check }))
     .catch((error) => {
