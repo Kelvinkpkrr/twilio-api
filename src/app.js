@@ -1,4 +1,5 @@
 const express = require("express");
+const { reservationsUrl } = require("twilio/lib/jwt/taskrouter/util");
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -8,6 +9,8 @@ const authToken = process.env.TWILIO_AUTH_TOKEN;
 const serviceSid = process.env.TWILIO_SERVICE_SID;
 
 const client = require("twilio")(accountSid, authToken);
+
+app("", (req, res) => res.send("<p>twilio-api</p>"));
 
 app.get("/verify", (req, res) => {
   if (!req.query.phoneNumber) {
