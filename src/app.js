@@ -39,7 +39,7 @@ app.get("/check-token", (req, res) => {
     return res.send({ error: "You must provide a phone number" });
   }
   if (!req.query.code) {
-    return res.send({ error: "You must provide a channel" });
+    return res.send({ error: "You must provide a code" });
   }
   client.verify
     .services(serviceSid)
