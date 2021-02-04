@@ -47,7 +47,10 @@ app.get("/check-token", (req, res) => {
       to: req.query.phoneNumber,
       code: req.query.code,
     })
-    .then((verification_check) => console.log(verification_check.status));
+    .then((verification_check) => res.send({ verification_check }))
+    .catch((error) => {
+      return res.send({ error });
+    });
 });
 
 app.listen(port, () => {
