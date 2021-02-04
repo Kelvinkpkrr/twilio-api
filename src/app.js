@@ -12,7 +12,7 @@ const client = require("twilio")(accountSid, authToken);
 
 app.get("", (req, res) => res.send("<p>twilio-api</p>"));
 
-app.get("/send-token", (req, res) => {
+app.get("/send-code", (req, res) => {
   if (!req.body.phoneNumber) {
     return res.send({ error: "You must provide a phone number" });
   }
@@ -34,7 +34,7 @@ app.get("/send-token", (req, res) => {
     });
 });
 
-app.get("/check-token", (req, res) => {
+app.get("/check-code", (req, res) => {
   if (!req.body.phoneNumber) {
     return res.send({ error: "You must provide a phone number" });
   }
