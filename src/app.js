@@ -10,7 +10,7 @@ const serviceSid = process.env.TWILIO_SERVICE_SID;
 
 const client = require("twilio")(accountSid, authToken);
 
-app("", (req, res) => res.send("<p>twilio-api</p>"));
+app.get("", (req, res) => res.send("<p>twilio-api</p>"));
 
 app.get("/verify", (req, res) => {
   if (!req.query.phoneNumber) {
