@@ -27,7 +27,7 @@ app.get("/send-code", (req, res) => {
       channel: "sms",
     })
     .then((verification) => {
-      return res.send({ verification });
+      return res.send({ status: verification.status });
     })
     .catch((error) => {
       return res.send({ error });
@@ -47,7 +47,9 @@ app.get("/check-code", (req, res) => {
       to: req.body.phoneNumber,
       code: req.body.code,
     })
-    .then((verification_check) => res.send({ verification_check }))
+    .then((verification_check) =>
+      res.send({ status: verification_check.status })
+    )
     .catch((error) => {
       return res.send({ error });
     });
