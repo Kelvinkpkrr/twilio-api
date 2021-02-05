@@ -1,7 +1,7 @@
 var express = require("express");
 
 const app = express();
-app.use(bodyParser.json());
+app.use(express.json());
 const port = process.env.PORT || 3000;
 
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
@@ -12,7 +12,7 @@ const client = require("twilio")(accountSid, authToken);
 
 app.get("", (req, res) => res.send("<p>twilio-api</p>"));
 
-app.get("/send-code", (req, res) => {
+app.post("/send-code", (req, res) => {
   if (!req.body.phoneNumber) {
     return res.send({ error: "You must provide a phone number" });
   }
@@ -34,7 +34,7 @@ app.get("/send-code", (req, res) => {
     });
 });
 
-app.get("/check-code", (req, res) => {
+app.post("/check-code", (req, res) => {
   if (!req.body.phoneNumber) {
     return res.send({ error: "You must provide a phone number" });
   }
