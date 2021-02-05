@@ -1,7 +1,9 @@
-const express = require("express");
+var express = require("express"),
+  bodyParser = require("body-parser");
 const { reservationsUrl } = require("twilio/lib/jwt/taskrouter/util");
 
 const app = express();
+app.use(bodyParser.json());
 const port = process.env.PORT || 3000;
 
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
@@ -13,17 +15,17 @@ const client = require("twilio")(accountSid, authToken);
 app.get("", (req, res) => res.send("<p>twilio-api</p>"));
 
 app.get("/send-code", (req, res) => {
-  if (!req.query.phoneNumber) {
+  if (!req.body.phoneNumber) {
     return res.send({ error: "You must provide a phone number" });
   }
-  if (!req.query.channel) {
+  if (!req.body.channel) {
     return res.send({ error: "You must provide a channel" });
   }
 
   client.verify
     .services(serviceSid)
     .verifications.create({
-      to: req.query.phoneNumber,
+      to: req.body.phoneNumber,
       channel: "sms",
     })
     .then((verification) => {
