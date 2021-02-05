@@ -1,6 +1,4 @@
-var express = require("express"),
-  bodyParser = require("body-parser");
-const { reservationsUrl } = require("twilio/lib/jwt/taskrouter/util");
+var express = require("express");
 
 const app = express();
 app.use(bodyParser.json());
