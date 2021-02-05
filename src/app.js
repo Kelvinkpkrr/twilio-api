@@ -1,7 +1,8 @@
-var express = require("express");
+var express = require("express"),
+  bodyParser = require("body-parser");
 
 const app = express();
-app.use(express.json());
+app.use(bodyParser.json());
 const port = process.env.PORT || 3000;
 
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
