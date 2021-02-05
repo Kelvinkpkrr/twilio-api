@@ -13,10 +13,10 @@ const client = require("twilio")(accountSid, authToken);
 app.get("", (req, res) => res.send("<p>twilio-api</p>"));
 
 app.get("/send-code", (req, res) => {
-  if (!req.body.phoneNumber) {
+  if (!req.query.phoneNumber) {
     return res.send({ error: "You must provide a phone number" });
   }
-  if (!req.body.channel) {
+  if (!req.query.channel) {
     return res.send({ error: "You must provide a channel" });
   }
 
