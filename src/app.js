@@ -23,7 +23,7 @@ app.get("/send-code", (req, res) => {
   client.verify
     .services(serviceSid)
     .verifications.create({
-      to: req.body.phoneNumber,
+      to: req.query.phoneNumber,
       channel: "sms",
     })
     .then((verification) => {
