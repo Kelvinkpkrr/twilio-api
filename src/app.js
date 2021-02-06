@@ -31,7 +31,7 @@ app.post("/send-code", (req, res) => {
       return res.send({ code: "200", status: verification.status });
     })
     .catch((error) => {
-      return res.send({ error });
+      return res.send(error);
     });
 });
 
@@ -52,7 +52,7 @@ app.post("/check-code", (req, res) => {
       res.send({ code: "200", status: verification_check.status })
     )
     .catch((error) => {
-      return res.send({ error });
+      return res.send(error);
     });
 });
 
