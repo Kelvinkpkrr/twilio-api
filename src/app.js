@@ -49,7 +49,9 @@ app.post("/check-code", (req, res) => {
       code: req.body.code,
     })
     .then((verification_check) =>
-      res.send({ code: 200, status: verification_check.status })
+      verification_check.status === "approved"
+        ? res.send({ code: 200, status: verification_check.status })
+        : res.send({ code: 401, status: verification_check.status })
     )
     .catch((error) => {
       return res.send(error);
