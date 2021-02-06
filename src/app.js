@@ -28,7 +28,7 @@ app.post("/send-code", (req, res) => {
       channel: "sms",
     })
     .then((verification) => {
-      return res.send({ code: "200", status: verification.status });
+      return res.send({ code: 200, status: verification.status });
     })
     .catch((error) => {
       return res.send(error);
@@ -49,7 +49,7 @@ app.post("/check-code", (req, res) => {
       code: req.body.code,
     })
     .then((verification_check) =>
-      res.send({ code: "200", status: verification_check.status })
+      res.send({ code: 200, status: verification_check.status })
     )
     .catch((error) => {
       return res.send(error);
