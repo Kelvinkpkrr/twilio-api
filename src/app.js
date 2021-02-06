@@ -28,7 +28,7 @@ app.post("/send-code", (req, res) => {
       channel: "sms",
     })
     .then((verification) => {
-      return res.send({ status: verification.status });
+      return res.send({ code: "200", status: verification.status });
     })
     .catch((error) => {
       return res.send({ error });
